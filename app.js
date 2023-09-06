@@ -2,6 +2,8 @@ import { resolve } from "node:path";
 import express, { json } from "express";
 import cors from "cors";
 
+import { moviesRouter } from "./routes/movies.js";
+
 const PORT = process.env.PORT ?? 3000;
 
 const app = express();
@@ -16,9 +18,7 @@ app.get("/", (req, res) => {
 });
 
 // API routes
-app.get("/x", (req, res) => {
-  res.json({ok: true})
-})
+app.use("/movies", moviesRouter);
 
 // Not found page
 app.use((req, res) => {
